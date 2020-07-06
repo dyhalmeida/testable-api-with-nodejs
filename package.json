@@ -7,7 +7,7 @@
     "build": "babel src --out-dir dist",
     "start": "npm run build && node dist/server.js",
     "start:dev": "babel-node src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:integration": "NODE_ENV=test mocha --opts test/integration/mocha.opts test/integration/**/*.spec.js"
   },
   "keywords": [],
   "author": "Diego Almeida <dyhalmeida@gmail.com>",

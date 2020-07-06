@@ -16,7 +16,10 @@
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",
     "@babel/node": "^7.10.4",
-    "@babel/preset-env": "^7.10.4"
+    "@babel/preset-env": "^7.10.4",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.3",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "express": "^4.17.1"

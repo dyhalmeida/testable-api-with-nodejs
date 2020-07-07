@@ -1,14 +1,9 @@
 const { Router } = require('express');
+const ProductsController = require('../controllers/products');
+
 const router = Router();
 
-router.get('/', (req, res) => {
-    res.json([
-        {
-            name: 'Default name',
-            description: 'Default description',
-            price: 100
-        }
-    ]);
-});
+const productsController = new ProductsController();
+router.get('/', productsController.index);
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const ProductsController = require('../../../src/controllers/products');
 const sinon = require('sinon');
+const Product = require('../../../src/models/products');
 
 describe('Controllers: Products', () => {
 
@@ -10,7 +11,7 @@ describe('Controllers: Products', () => {
     }];
 
     describe('index(): products', () => {
-        it('should return a lits of products', () => {
+        it('should return a lits of products', async () => {
 
             /**
              * req: É um objeto fake da requisição enviada pela rota do express.
@@ -27,11 +28,13 @@ describe('Controllers: Products', () => {
                 json: sinon.spy()
             }
 
-            const productsController = new ProductsController();
-            productsController.index(req, res);
+            Product.find = sinon.stub();
 
-            expect(res.json.called).to.be.true;
-            expect(res.json.calledWith(defaultProduct)).to.be.true;
+            Product.find.withArgs({}).resolves(defaultProduct);
+
+            const productsController = new ProductsController(Product);
+            await productsController.index(req, res);
+            sinon.assert.calledWith(res.json, defaultProduct);
 
         });
     });

@@ -1,13 +1,12 @@
 class ProductsController {
     
-    constructor() {}
+    constructor(Product) {
+        this.Product = Product;
+    }
 
     async index(req, res) {
-        return res.json([{
-            name: 'Default name',
-            description: 'Default description',
-            price: 100
-        }])
+        const products = await this.Product.find({});
+        res.json(products);
     }
 
 }

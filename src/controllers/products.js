@@ -5,8 +5,12 @@ class ProductsController {
     }
 
     async index(req, res) {
-        const products = await this.Product.find({});
-        res.json(products);
+        try {
+            const products = await this.Product.find({});
+            res.json(products);
+        } catch (error) {
+            res.status(400).json(error.message);
+        }
     }
 
 }
